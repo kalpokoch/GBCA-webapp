@@ -11,7 +11,7 @@ const DatasetBlock = () => {
   ];
 
   return (
-    <section className="py-[120px]" style={{ backgroundColor: colors.sectionBg }}>
+    <section className="py-section" style={{ backgroundColor: colors.sectionBg }}>
       <div className="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left — Dataset Stats */}
         <motion.div

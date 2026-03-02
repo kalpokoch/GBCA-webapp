@@ -12,7 +12,7 @@ const MethodologySection = () => {
   return (
     <section id="methodology" className="bg-white">
       {/* Section Header */}
-      <div className="py-[120px] bg-white">
+      <div className="py-section bg-white">
         <div className="max-w-[1100px] mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

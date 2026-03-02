@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { UploadCloud, Sliders, Cpu, Activity, ArrowRight, ArrowDown } from "lucide-react";
+import { MdCloudUpload, MdTune, MdMemory, MdShowChart, MdArrowForward, MdArrowDownward } from "react-icons/md";
 import { methodologyData } from "@/data/methodologyData";
 import type { WorkflowStep } from "@/data/methodologyData";
 
 const iconMap: Record<string, React.ElementType> = {
-  "upload-cloud": UploadCloud,
-  sliders: Sliders,
-  cpu: Cpu,
-  activity: Activity,
+  "upload-cloud": MdCloudUpload,
+  sliders: MdTune,
+  cpu: MdMemory,
+  activity: MdShowChart,
 };
 
 const StepCard = ({ step, index }: { step: WorkflowStep; index: number }) => {
@@ -47,7 +47,7 @@ const WorkflowDiagram = () => {
   const { workflow, colors } = methodologyData;
 
   return (
-    <section className="py-[120px] bg-white">
+    <section className="py-section bg-white">
       <div className="max-w-[1100px] mx-auto px-6">
         {/* Desktop horizontal */}
         <div className="hidden md:flex items-stretch gap-0">
@@ -62,7 +62,7 @@ const WorkflowDiagram = () => {
                   transition={{ delay: i * 0.15 + 0.3 }}
                   className="mx-2 flex-shrink-0"
                 >
-                  <ArrowRight size={24} style={{ color: colors.accent }} />
+                  <MdArrowForward size={24} style={{ color: colors.accent }} />
                 </motion.div>
               )}
             </div>
@@ -82,7 +82,7 @@ const WorkflowDiagram = () => {
                   transition={{ delay: i * 0.15 + 0.3 }}
                   className="my-2"
                 >
-                  <ArrowDown size={24} style={{ color: colors.accent }} />
+                  <MdArrowDownward size={24} style={{ color: colors.accent }} />
                 </motion.div>
               )}
             </div>

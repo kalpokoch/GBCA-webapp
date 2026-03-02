@@ -12,7 +12,7 @@ const AwarenessIntro = () => {
   const { intro, colors } = awarenessData;
 
   return (
-    <section className="py-[120px] bg-white">
+    <section className="py-section bg-white">
       <div className="max-w-[1100px] mx-auto px-6 text-center">
         <motion.h2
           {...fadeUp(0)}

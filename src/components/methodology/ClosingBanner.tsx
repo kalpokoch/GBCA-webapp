@@ -34,7 +34,7 @@ const ClosingBanner = () => {
           animation: gradientShift 6s ease infinite;
         }
       `}</style>
-      <section className="gradient-shift py-[120px]">
+      <section className="gradient-shift py-section">
         <div className="max-w-[1100px] mx-auto px-6 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

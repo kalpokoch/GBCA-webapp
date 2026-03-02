@@ -86,7 +86,7 @@ const MetricsBlock = () => {
   const cm = metrics.confusionMatrix;
 
   return (
-    <section className="py-[120px] bg-white">
+    <section className="py-section bg-white">
       <div className="max-w-[1100px] mx-auto px-6">
         {/* Metric Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-16">

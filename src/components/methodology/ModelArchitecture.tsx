@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Check, ArrowDown } from "lucide-react";
+import { MdCheck, MdArrowDownward } from "react-icons/md";
 import { methodologyData } from "@/data/methodologyData";
 
 const ModelArchitecture = () => {
   const { architecture, encoderStages, classificationHead, colors } = methodologyData;
 
   return (
-    <section className="py-[120px]" style={{ backgroundColor: colors.sectionBg }}>
+    <section className="py-section" style={{ backgroundColor: colors.sectionBg }}>
       <div className="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left — Description */}
         <div>
@@ -40,7 +40,7 @@ const ModelArchitecture = () => {
                 transition={{ duration: 0.3, delay: i * 0.1 }}
                 className="flex items-start gap-2"
               >
-                <Check size={16} className="flex-shrink-0 mt-0.5" style={{ color: colors.accent }} />
+                <MdCheck size={16} className="flex-shrink-0 mt-0.5" style={{ color: colors.accent }} />
                 <span className="font-body font-light text-sm text-gray-700">{item}</span>
               </motion.li>
             ))}
@@ -80,13 +80,13 @@ const ModelArchitecture = () => {
                 </div>
               </motion.div>
               {i < encoderStages.length - 1 && (
-                <ArrowDown size={18} className="my-1 text-gray-300" />
+                <MdArrowDownward size={18} className="my-1 text-gray-300" />
               )}
             </div>
           ))}
 
           {/* Classification Head */}
-          <ArrowDown size={18} className="my-1 text-gray-300" />
+          <MdArrowDownward size={18} className="my-1 text-gray-300" />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

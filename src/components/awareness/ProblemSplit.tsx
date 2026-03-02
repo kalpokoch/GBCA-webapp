@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { EyeOff, Clock, Cpu } from "lucide-react";
+import { MdVisibilityOff, MdSchedule, MdMemory } from "react-icons/md";
 import { awarenessData } from "@/data/awarenessData";
 import type { ProblemBlock, Stage } from "@/data/awarenessData";
 
 const iconMap: Record<string, React.ElementType> = {
-  "eye-off": EyeOff,
-  clock: Clock,
-  cpu: Cpu,
+  "eye-off": MdVisibilityOff,
+  clock: MdSchedule,
+  cpu: MdMemory,
 };
 
 const ProblemCard = ({ block, index }: { block: ProblemBlock; index: number }) => {
@@ -69,7 +69,7 @@ const ProblemSplit = () => {
   const { problemBlocks, stages, colors } = awarenessData;
 
   return (
-    <section className="py-[120px]" style={{ backgroundColor: colors.sectionBg }}>
+    <section className="py-section" style={{ backgroundColor: colors.sectionBg }}>
       <div className="max-w-[1100px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Left — Problem Cards */}
         <div className="flex flex-col gap-6">

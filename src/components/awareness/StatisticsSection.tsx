@@ -58,7 +58,7 @@ const StatisticsSection = () => {
   const { stats } = awarenessData;
 
   return (
-    <section className="py-[120px] bg-white">
+    <section className="py-section bg-white">
       <div className="max-w-[1100px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
           <StatCard key={i} stat={stat} index={i} />

@@ -75,9 +75,9 @@ const Navbar = () => {
           ))}
           <Link
             to={heroData.demoRoute}
-            className="border border-foreground px-5 py-1.5 text-sm font-sans uppercase tracking-widest text-foreground hover:bg-foreground hover:text-background transition-colors"
+            className="slice-button font-sans"
           >
-            Demo
+            <span className="text">Demo</span>
           </Link>
         </div>
 
@@ -116,9 +116,9 @@ const Navbar = () => {
                 <Link
                   to={heroData.demoRoute}
                   onClick={handleDemoClick}
-                  className="border border-foreground px-5 py-3 text-center text-sm font-sans uppercase tracking-widest text-foreground hover:bg-foreground hover:text-background transition-colors rounded-lg"
+                  className="slice-button font-sans w-full"
                 >
-                  Try Demo
+                  <span className="text">Try Demo</span>
                 </Link>
 
                 {/* Logo in Mobile Menu */}

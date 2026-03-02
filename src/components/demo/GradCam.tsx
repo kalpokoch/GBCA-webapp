@@ -35,16 +35,13 @@ export const GradCamOverlay: React.FC<GradCamOverlayProps> = ({ data }) => {
 
   return (
     <div
-      className={`w-full py-3 px-4 rounded-xl border flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 ${
+      className={`w-full py-2 px-3 rounded-lg border flex flex-col sm:flex-row items-center justify-center gap-1 ${
         isCancer ? "bg-red-100 text-red-700 border-red-200" : "bg-green-100 text-green-700 border-green-200"
       }`}
     >
-      <div className="font-body text-sm sm:text-base font-semibold text-center sm:text-left">
+      <div className="font-body text-sm font-semibold text-center sm:text-left">
         {isCancer ? "🔴 Cancer" : "🟢 Normal"} · <CountUp to={pctNum} from={0} duration={1.5} />% confidence
       </div>
-      <span className="font-body text-xs font-normal opacity-70 text-center">
-        (GradCAM++ · CBAM attention layer)
-      </span>
     </div>
   );
 };

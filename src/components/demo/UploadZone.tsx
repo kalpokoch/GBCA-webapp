@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { MdCloudUpload } from "react-icons/md";
+import { MdCloudUpload, MdZoomIn } from "react-icons/md";
+import { Button } from "@/components/ui/button";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -11,9 +12,18 @@ interface Props {
   status?: Status;
   gradcamUrl?: string | null;
   isCancer?: boolean;
+  onFullscreenClick?: () => void;
 }
 
-export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, status = "idle", gradcamUrl, isCancer }) => {
+export const UploadZone: React.FC<Props> = ({ 
+  onFileSelect, 
+  disabled, 
+  preview, 
+  status = "idle", 
+  gradcamUrl, 
+  isCancer,
+  onFullscreenClick 
+}) => {
   const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const isLoading = status === "loading";
@@ -73,7 +83,7 @@ export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, s
           <img
             src={preview}
             alt="CT scan preview"
-            className="w-full max-h-48 object-contain rounded-xl"
+            className="w-full max-h-80 object-contain rounded-xl"
           />
 
           {/* Scanning animation overlay during inference */}
@@ -122,8 +132,53 @@ export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, s
             )}
           </AnimatePresence>
 
-          {/* Click-to-change overlay (only when not loading) */}
-          {!isLoading && (
+          {/* Fullscreen button - appears when GradCAM is shown */}
+          <AnimatePresence>
+            {showGradcam && onFullscreenClick && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ delay: 1.6, duration: 0.3 }}
+                className="absolute top-3 right-3 z-10"
+              >
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onFullscreenClick();
+                  }}
+                  className="gap-2 bg-white/95 hover:bg-white shadow-lg backdrop-blur-sm border border-gray-200"
+                >
+                  <MdZoomIn size={16} />
+                  <span className="hidden sm:inline font-body text-xs">Fullscreen</span>
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Heatmap badge - appears on the image */}
+          <AnimatePresence>
+            {showGradcam && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: 1.7, duration: 0.3 }}
+                className="absolute bottom-3 left-3 right-3 z-10"
+              >
+                <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/20">
+                  <p className="font-body text-xs text-white text-center">
+                    <span className="font-semibold">GradCAM++</span> · CBAM attention layer
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Click-to-change overlay (only when not loading and not showing gradcam) */}
+          {!isLoading && !showGradcam && (
             <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black/40 rounded-xl">
               <span className="font-body text-white font-semibold text-sm">Click to change image</span>
             </div>

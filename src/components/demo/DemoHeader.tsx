@@ -1,5 +1,6 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
+import { MdCheckCircle, MdCancel } from "react-icons/md";
 import { demoData } from "@/data/demoData";
 
 interface DemoHeaderProps {
@@ -18,12 +19,14 @@ export const DemoHeader: React.FC<DemoHeaderProps> = ({ apiOnline }) => {
           <Badge variant="secondary">{demoData.apiStatus.checking}</Badge>
         )}
         {apiOnline === true && (
-          <Badge variant="outline" className="bg-green-100 text-green-700 border-green-200">
-            {demoData.apiStatus.online}
+          <Badge variant="outline" className="bg-green-100 text-green-700 border-green-200 flex gap-1.5 items-center">
+            <MdCheckCircle size={16} /> {demoData.apiStatus.online}
           </Badge>
         )}
         {apiOnline === false && (
-          <Badge variant="destructive">{demoData.apiStatus.offline}</Badge>
+          <Badge variant="destructive" className="flex gap-1.5 items-center">
+            <MdCancel size={16} /> {demoData.apiStatus.offline}
+          </Badge>
         )}
       </div>
     </div>

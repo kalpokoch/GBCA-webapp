@@ -31,11 +31,11 @@ export interface DemoData {
 
 export const demoData: DemoData = {
   title: "CT Scan Classifier",
-  subtitle: "DenseNet121 + CBAM · Gallbladder Cancer Detection",
+  subtitle: " Gallbladder Cancer Detection",
   apiStatus: {
     checking: "Checking API…",
-    online: "✅ API Online",
-    offline: "❌ API Offline — check HF Space",
+    online: "API Online",
+    offline: "API Offline — check HF Space",
   },
   gradCamToggle: {
     label: "Show GradCAM++ Heatmap",

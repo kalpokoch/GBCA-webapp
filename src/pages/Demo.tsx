@@ -8,6 +8,7 @@ import { ResultCard }                    from "../components/demo/ResultCard";
 import { CropModal }                     from "../components/demo/CropModal";
 import { Alert, AlertDescription }       from "@/components/ui/alert";
 import CircularGallery                   from "@/components/ui/circular-gallery";
+import { MdBarChart } from "react-icons/md";
 import { demoData }                      from "@/data/demoData";
 import { useInference }                  from "../hooks/useInference";
 
@@ -110,7 +111,7 @@ export const Demo: React.FC = () => {
               <div className="space-y-4">
                 {status === "idle" && (
                   <div className="flex flex-col items-center justify-center h-40 rounded-2xl border-2 border-dashed border-gray-200 bg-white/60 text-gray-400 select-none">
-                    <span className="text-3xl mb-2">📊</span>
+                    <MdBarChart size={28} className="mb-2 text-gray-400" />
                     <p className="text-sm font-medium">Results will appear here</p>
                     <p className="text-xs mt-1 opacity-70">Upload a CT scan to run inference</p>
                   </div>

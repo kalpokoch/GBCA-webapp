@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { MdCloudUpload } from "react-icons/md";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -59,7 +60,7 @@ export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, s
       {/* Empty state */}
       {!preview && (
         <div className="flex flex-col items-center gap-2 text-gray-500 select-none">
-          <span className="text-4xl">🫀</span>
+          <MdCloudUpload size={32} className="text-blue-500" />
           <p className="text-sm font-medium">Drop CT scan here or click to browse</p>
           <p className="text-xs text-gray-400">PNG · JPG · JPEG · Max 10MB</p>
         </div>

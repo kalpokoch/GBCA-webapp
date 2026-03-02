@@ -28,7 +28,7 @@ const ProblemCard = ({ block, index }: { block: ProblemBlock; index: number }) =
         {Icon && <Icon size={20} />}
       </div>
       <div>
-        <h3 className="font-semibold text-base" style={{ color: colors.primary }}>
+        <h3 className="font-body font-semibold text-base" style={{ color: colors.primary }}>
           {block.heading}
         </h3>
         <p className="font-body font-light text-sm text-gray-500 mt-1">
@@ -55,7 +55,7 @@ const StageCard = ({ stage, index }: { stage: Stage; index: number }) => {
       }`}
       style={stage.highlight ? { borderLeftColor: colors.danger } : undefined}
     >
-      <p className="font-bold" style={{ color: colors.primary }}>
+      <p className="font-body font-bold" style={{ color: colors.primary }}>
         {stage.label}
       </p>
       <p className="font-body font-light text-sm text-gray-500 mt-2">

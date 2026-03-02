@@ -403,10 +403,20 @@ class App {
       const dx = Math.abs(e.clientX - this._mouseDownX);
       const dt = Date.now() - this._mouseDownTime;
       if (dx < 5 && dt < 300 && this.onSelect) {
-        // Hit-test: find which media is closest to centre
-        const closest = this.medias.reduce((best, m) =>
-          Math.abs(m.plane.position.x) < Math.abs(best.plane.position.x) ? m : best
-        );
+        // Hit-test: convert mouse X to world space and find closest media
+        const rect = this.container.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        // Normalize to [-1, 1] relative to container center
+        const relativeX = (mouseX / rect.width - 0.5) * 2;
+        // Convert to world coordinates
+        const worldX = relativeX * (this.viewport.width / 2);
+        
+        // Find media closest to click position in world space
+        const closest = this.medias.reduce((best, m) => {
+          const distBest = Math.abs(best.plane.position.x - worldX);
+          const distCurrent = Math.abs(m.plane.position.x - worldX);
+          return distCurrent < distBest ? m : best;
+        });
         this.onSelect(closest.image);
       }
       this._downInsideGallery = false;

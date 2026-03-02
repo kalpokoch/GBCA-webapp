@@ -27,7 +27,7 @@ const DatasetBlock = () => {
                 className="bg-white rounded-full px-4 py-2 border flex flex-col items-center min-w-[120px]"
                 style={{ borderColor: colors.accent }}
               >
-                <span className="font-bold text-lg" style={{ color: colors.primary }}>
+                <span className="font-display font-bold text-lg" style={{ color: colors.primary }}>
                   {pill.value}
                 </span>
                 <span className="font-body font-light text-xs text-gray-500">
@@ -72,7 +72,7 @@ const DatasetBlock = () => {
                 {i + 1}
               </div>
               <div>
-                <p className="font-semibold text-sm" style={{ color: colors.primary }}>
+                <p className="font-body font-semibold text-sm" style={{ color: colors.primary }}>
                   {step.label}
                 </p>
                 <p className="font-body font-light text-sm text-gray-500 mt-1">

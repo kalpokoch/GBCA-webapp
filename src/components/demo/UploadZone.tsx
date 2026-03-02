@@ -61,8 +61,8 @@ export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, s
       {!preview && (
         <div className="flex flex-col items-center gap-2 text-gray-500 select-none">
           <MdCloudUpload size={32} className="text-blue-500" />
-          <p className="text-sm font-medium">Drop CT scan here or click to browse</p>
-          <p className="text-xs text-gray-400">PNG · JPG · JPEG · Max 10MB</p>
+          <p className="font-body text-sm font-medium">Drop CT scan here or click to browse</p>
+          <p className="font-body text-xs text-gray-400">PNG · JPG · JPEG · Max 10MB</p>
         </div>
       )}
 
@@ -117,7 +117,7 @@ export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, s
                 className="absolute inset-0 w-full h-full object-contain rounded-xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
               />
             )}
           </AnimatePresence>
@@ -125,7 +125,7 @@ export const UploadZone: React.FC<Props> = ({ onFileSelect, disabled, preview, s
           {/* Click-to-change overlay (only when not loading) */}
           {!isLoading && (
             <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black/40 rounded-xl">
-              <span className="text-white font-semibold text-sm">Click to change image</span>
+              <span className="font-body text-white font-semibold text-sm">Click to change image</span>
             </div>
           )}
         </div>

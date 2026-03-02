@@ -112,8 +112,8 @@ export const Demo: React.FC = () => {
                 {status === "idle" && (
                   <div className="flex flex-col items-center justify-center h-40 rounded-2xl border-2 border-dashed border-gray-200 bg-white/60 text-gray-400 select-none">
                     <MdBarChart size={28} className="mb-2 text-gray-400" />
-                    <p className="text-sm font-medium">Results will appear here</p>
-                    <p className="text-xs mt-1 opacity-70">Upload a CT scan to run inference</p>
+                    <p className="font-body text-sm font-medium">Results will appear here</p>
+                    <p className="font-body text-xs mt-1 opacity-70">Upload a CT scan to run inference</p>
                   </div>
                 )}
                 {status === "loading" && <LoadingState gradcam={true} />}
@@ -128,8 +128,9 @@ export const Demo: React.FC = () => {
                     {result.type === "gradcam" && (
                       <div className="space-y-3">
                         <GradCamOverlay data={result.data} />
-                        <p className="text-xs text-gray-400 text-center">
-                          Heatmap overlaid on image ← see left panel
+                        <p className="font-body text-xs text-gray-400 text-center px-2">
+                          <span className="hidden lg:inline">Heatmap overlaid on image ← see left panel</span>
+                          <span className="lg:hidden">Heatmap overlaid on image above</span>
                         </p>
                       </div>
                     )}
@@ -143,7 +144,7 @@ export const Demo: React.FC = () => {
 
         {/* ── Sample gallery — pinned at bottom, edge-to-edge ── */}
         <div className="w-full flex-shrink-0">
-          <p className="text-center text-xs font-medium text-gray-400 pb-0 pt-1 tracking-widest uppercase">
+          <p className="font-body text-center text-xs font-medium text-gray-400 pb-0 pt-1 tracking-widest uppercase">
             {demoData.galleryLabel}
           </p>
           <div className="w-full h-[200px]">

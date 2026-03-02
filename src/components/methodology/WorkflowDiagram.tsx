@@ -33,7 +33,7 @@ const StepCard = ({ step, index }: { step: WorkflowStep; index: number }) => {
           <Icon size={32} style={{ color: colors.primary }} />
         </div>
       )}
-      <p className="font-semibold" style={{ color: colors.primary }}>
+      <p className="font-body font-semibold" style={{ color: colors.primary }}>
         {step.label}
       </p>
       <p className="font-body font-light text-sm text-gray-500 mt-2">

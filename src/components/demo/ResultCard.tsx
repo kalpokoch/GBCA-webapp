@@ -15,15 +15,15 @@ export const ResultCard: React.FC<Props> = ({ data }) => {
   return (
     <Card className={isCancer ? "border-red-300 bg-red-50" : "border-green-300 bg-green-50"}>
       <CardHeader className="pb-2">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-xl">
+        <div className="flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+          <CardTitle className="font-display text-lg sm:text-xl">
             {isCancer ? "🔴 Cancer Detected" : "🟢 Normal"}
           </CardTitle>
           <Badge
             variant="outline"
             className={isCancer
-              ? "font-mono bg-red-100 text-red-700 border-red-200"
-              : "font-mono bg-green-100 text-green-700 border-green-200"}
+              ? "font-mono bg-red-100 text-red-700 border-red-200 text-xs"
+              : "font-mono bg-green-100 text-green-700 border-green-200 text-xs"}
           >
             class {data.predicted_class}
           </Badge>
@@ -31,7 +31,7 @@ export const ResultCard: React.FC<Props> = ({ data }) => {
       </CardHeader>
 
       <CardContent className="space-y-2">
-        <div className="flex justify-between text-sm text-gray-600">
+        <div className="flex justify-between font-body text-sm text-gray-600">
           <span>Confidence</span>
           <span className="font-semibold">
             <CountUp to={pctNum} from={0} duration={1.5} />%
@@ -45,7 +45,7 @@ export const ResultCard: React.FC<Props> = ({ data }) => {
       </CardContent>
 
       <CardFooter>
-        <p className="text-xs text-gray-400 ml-auto">Threshold: {data.threshold_used}</p>
+        <p className="font-body text-xs text-gray-400 ml-auto">Threshold: {data.threshold_used}</p>
       </CardFooter>
     </Card>
   );

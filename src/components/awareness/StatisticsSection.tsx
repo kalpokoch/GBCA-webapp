@@ -44,7 +44,7 @@ const StatCard = ({ stat, index }: { stat: Stat; index: number }) => {
       className="bg-white rounded-2xl shadow-md hover:shadow-lg p-8 text-center border-t-4 transition-shadow"
       style={{ borderTopColor: colors.accent }}
     >
-      <p className="text-4xl font-bold" style={{ color: colors.primary }}>
+      <p className="font-display text-4xl font-bold" style={{ color: colors.primary }}>
         {isAI ? stat.value : `${count}${stat.suffix}`}
       </p>
       <p className="font-body font-light text-sm text-gray-500 mt-2">

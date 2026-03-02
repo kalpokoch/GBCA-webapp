@@ -123,11 +123,11 @@ const MetricsBlock = () => {
                 <p className="font-body font-light text-xs text-gray-400">Actual Cancer</p>
               </div>
               <div className="bg-[#F0FFF4] rounded-xl p-4 text-center border border-green-100">
-                <p className="font-bold text-2xl" style={{ color: colors.primary }}>{cm.truePositive}</p>
+                <p className="font-display font-bold text-2xl" style={{ color: colors.primary }}>{cm.truePositive}</p>
                 <p className="font-body font-light text-xs text-gray-500 mt-1">True Positive</p>
               </div>
               <div className="bg-[#FFF5F5] rounded-xl p-4 text-center border border-red-100">
-                <p className="font-bold text-2xl" style={{ color: colors.primary }}>{cm.falseNegative}</p>
+                <p className="font-display font-bold text-2xl" style={{ color: colors.primary }}>{cm.falseNegative}</p>
                 <p className="font-body font-light text-xs text-gray-500 mt-1">False Negative</p>
               </div>
             </div>
@@ -137,11 +137,11 @@ const MetricsBlock = () => {
                 <p className="font-body font-light text-xs text-gray-400">Actual Normal</p>
               </div>
               <div className="bg-[#FFF5F5] rounded-xl p-4 text-center border border-red-100">
-                <p className="font-bold text-2xl" style={{ color: colors.primary }}>{cm.falsePositive}</p>
+                <p className="font-display font-bold text-2xl" style={{ color: colors.primary }}>{cm.falsePositive}</p>
                 <p className="font-body font-light text-xs text-gray-500 mt-1">False Positive</p>
               </div>
               <div className="bg-[#F0FFF4] rounded-xl p-4 text-center border border-green-100">
-                <p className="font-bold text-2xl" style={{ color: colors.primary }}>{cm.trueNegative}</p>
+                <p className="font-display font-bold text-2xl" style={{ color: colors.primary }}>{cm.trueNegative}</p>
                 <p className="font-body font-light text-xs text-gray-500 mt-1">True Negative</p>
               </div>
             </div>

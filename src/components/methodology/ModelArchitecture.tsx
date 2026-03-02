@@ -61,7 +61,7 @@ const ModelArchitecture = () => {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold text-sm" style={{ color: colors.primary }}>
+                    <p className="font-body font-semibold text-sm" style={{ color: colors.primary }}>
                       Stage {stage.stage}
                     </p>
                     <p className="font-body font-light text-xs text-gray-500">

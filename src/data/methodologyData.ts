@@ -97,7 +97,7 @@ export const methodologyData: MethodologyData = {
     normalImages: 851,
     testSetSize: 100,
     imageSize: "448 × 448 px",
-    source: "All India Institute of Medical Sciences (AIIMS), New Delhi",
+    source: "All India Institute of Medical Sciences (AIIMS)",
     imbalanceRatio: "1:2.56 (Cancer:Normal)",
     preprocessingSteps: [
       {

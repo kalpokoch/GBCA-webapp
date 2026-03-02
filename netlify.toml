@@ -7,7 +7,7 @@
 
 [build.environment]
   # Add your production API URL here
-  VITE_API_URL=https://kalpokoch-gbca.hf.space
+  VITE_API_URL = "https://kalpokoch-gbca.hf.space"
 
 # Redirect all non-matching routes to index.html for SPA routing
 [[redirects]]

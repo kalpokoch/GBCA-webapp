@@ -8,8 +8,9 @@ import { ResultCard }                    from "../components/demo/ResultCard";
 import { CropModal }                     from "../components/demo/CropModal";
 import { FullscreenImageDialog }         from "../components/demo/FullscreenImageDialog";
 import { Alert, AlertDescription }       from "@/components/ui/alert";
+import { Button }                        from "@/components/ui/button";
 import CircularGallery                   from "@/components/ui/circular-gallery";
-import { MdBarChart } from "react-icons/md";
+import { MdBarChart, MdRefresh } from "react-icons/md";
 import { demoData }                      from "@/data/demoData";
 import { useInference }                  from "../hooks/useInference";
 
@@ -81,6 +82,19 @@ export const Demo: React.FC = () => {
     }
   }, [openCrop]);
 
+  // New Analysis — clear all state and start fresh
+  const handleNewAnalysis = useCallback(() => {
+    // Clear preview image
+    if (preview) URL.revokeObjectURL(preview);
+    setPreview(null);
+    
+    // Reset inference state
+    reset();
+    
+    // Close fullscreen if open
+    setFullscreenOpen(false);
+  }, [preview, reset]);
+
   return (
     <>
       <Navbar />
@@ -130,6 +144,18 @@ export const Demo: React.FC = () => {
                   <>
                     {result.type === "json"    && <ResultCard     data={result.data} />}
                     {result.type === "gradcam" && <GradCamOverlay data={result.data} />}
+                    
+                    {/* New Analysis Button */}
+                    <div className="pt-2">
+                      <Button
+                        onClick={handleNewAnalysis}
+                        variant="outline" 
+                        className="w-full gap-2 font-body"
+                      >
+                        <MdRefresh size={16} />
+                        New Analysis
+                      </Button>
+                    </div>
                   </>
                 )}
               </div>

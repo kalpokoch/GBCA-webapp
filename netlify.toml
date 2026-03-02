@@ -1,0 +1,40 @@
+# Netlify Configuration for Gallbladder Cancer Detection WebApp
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+  node_version = "20"
+
+[build.environment]
+  # Add your production API URL here
+  VITE_API_URL=https://kalpokoch-gbca.hf.space
+
+# Redirect all non-matching routes to index.html for SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Cache settings for static assets
+[[headers]]
+  for = "/dist/**"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Cache settings for HTML (no cache)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache settings for images
+[[headers]]
+  for = "/public/**"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# CORS headers for API calls if needed
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

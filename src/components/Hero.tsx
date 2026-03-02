@@ -1,10 +1,20 @@
 import { heroData } from "@/data/heroData";
+import { useLazyImage } from "@/hooks/useLazyImage";
 
 const Hero = () => {
+  const { backgroundImage, isLoaded } = useLazyImage({
+    src: heroData.backgroundImage,
+  });
+
   return (
     <section
-      className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
-      style={{ backgroundImage: `url(${heroData.backgroundImage})` }}
+      className={`relative w-full h-screen bg-cover bg-center flex items-center justify-center transition-all duration-700 ${
+        isLoaded ? "blur-0" : "blur-sm"
+      }`}
+      style={{ 
+        backgroundImage,
+        backgroundColor: "#1a1a2e", // Fallback color while loading
+      }}
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/55" />

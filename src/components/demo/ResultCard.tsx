@@ -9,8 +9,8 @@ interface Props { data: PredictResponse; }
 
 export const ResultCard: React.FC<Props> = ({ data }) => {
   const isCancer = data.predicted_class === 1;
-  const pctNum = data.probability * 100;
-  const pct = pctNum.toFixed(1);
+  const pctNum = parseFloat((data.probability * 100).toFixed(2));
+  const pct = pctNum.toFixed(2);
 
   return (
     <Card className={isCancer ? "border-red-300 bg-red-50" : "border-green-300 bg-green-50"}>
@@ -36,6 +36,7 @@ export const ResultCard: React.FC<Props> = ({ data }) => {
           <span className="font-semibold">
             <CountUp to={pctNum} from={0} duration={1.5} />%
           </span>
+          {/* CountUp auto-detects 2 decimal places from pctNum */}
         </div>
         <Progress
           value={parseFloat(pct)}

@@ -32,26 +32,19 @@ interface GradCamOverlayProps {
 
 export const GradCamOverlay: React.FC<GradCamOverlayProps> = ({ data }) => {
   const isCancer = data.label === "Cancer";
-  const pctNum = data.probability * 100;
+  const pctNum = parseFloat((data.probability * 100).toFixed(2));
 
   return (
-    <div className="space-y-3">
-      <img
-        src={data.imageUrl}
-        alt="GradCAM heatmap"
-        className="w-full rounded-2xl border border-gray-200 shadow"
-      />
-      <Badge
-        variant="outline"
-        className={`w-full justify-center py-3 text-sm font-semibold rounded-xl ${
-          isCancer ? "bg-red-100 text-red-700 border-red-200" : "bg-green-100 text-green-700 border-green-200"
-        }`}
-      >
-        {isCancer ? "🔴 Cancer" : "🟢 Normal"} · <CountUp to={pctNum} from={0} duration={1.5} />% confidence
-        <span className="ml-2 text-xs font-normal opacity-70">
-          (GradCAM++ · CBAM attention layer)
-        </span>
-      </Badge>
-    </div>
+    <Badge
+      variant="outline"
+      className={`w-full justify-center py-3 text-sm font-semibold rounded-xl ${
+        isCancer ? "bg-red-100 text-red-700 border-red-200" : "bg-green-100 text-green-700 border-green-200"
+      }`}
+    >
+      {isCancer ? "🔴 Cancer" : "🟢 Normal"} · <CountUp to={pctNum} from={0} duration={1.5} />% confidence
+      <span className="ml-2 text-xs font-normal opacity-70">
+        (GradCAM++ · CBAM attention layer)
+      </span>
+    </Badge>
   );
 };

@@ -1,13 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { heroData } from "@/data/heroData";
 import { useEffect } from "react";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleScroll = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
     event.preventDefault();
     const targetElement = document.getElementById(targetId);
-    targetElement?.scrollIntoView({ behavior: "smooth" });
+    if (targetElement) {
+      // Section exists on current page — smooth scroll
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Section is on Index page — navigate there with hash
+      navigate(`/#${targetId}`);
+    }
   };
+
+  // On location change, if there's a hash, scroll to it after render
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const attempt = (tries: number) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else if (tries > 0) {
+          setTimeout(() => attempt(tries - 1), 100);
+        }
+      };
+      attempt(10);
+    }
+  }, [location.hash]);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-background border-b border-border">

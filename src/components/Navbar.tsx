@@ -77,7 +77,7 @@ const Navbar = () => {
             to={heroData.demoRoute}
             className="slice-button font-sans"
           >
-            <span className="text">Demo</span>
+            <span className="text">Live App</span>
           </Link>
         </div>
 
@@ -118,7 +118,7 @@ const Navbar = () => {
                   onClick={handleDemoClick}
                   className="slice-button font-sans w-full"
                 >
-                  <span className="text">Try Demo</span>
+                  <span className="text">Live App</span>
                 </Link>
 
                 {/* Logo in Mobile Menu */}

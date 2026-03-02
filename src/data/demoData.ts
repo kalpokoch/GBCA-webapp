@@ -30,8 +30,8 @@ export interface DemoData {
 }
 
 export const demoData: DemoData = {
-  title: "CT Scan Classifier",
-  subtitle: " Gallbladder Cancer Detection",
+  title: "Gallbladder Cancer",
+  subtitle: "Detection System",
   apiStatus: {
     checking: "Checking API…",
     online: "API Online",

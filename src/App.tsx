@@ -36,11 +36,11 @@ const AppContent = () => {
   }, [location.pathname, isInitialLoad]);
 
   // Show loader on initial load until hero image is loaded (only on homepage)
-  const showLoader = isInitialLoad && (!isHeroImageLoaded && isOnHomePage) || isLoading;
+  // const showLoader = isInitialLoad && (!isHeroImageLoaded && isOnHomePage) || isLoading;
 
   return (
     <>
-      <PageLoader isLoading={showLoader} />
+      {/* <PageLoader isLoading={showLoader} /> */}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/demo" element={<Demo />} />

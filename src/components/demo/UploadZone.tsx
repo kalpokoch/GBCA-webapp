@@ -2,6 +2,7 @@ import React, { useCallback, useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MdCloudUpload, MdZoomIn } from "react-icons/md";
 import { Button } from "@/components/ui/button";
+import { ScanningAnimation } from "@/components/ui/scanning-animation";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -87,35 +88,7 @@ export const UploadZone: React.FC<Props> = ({
           />
 
           {/* Scanning animation overlay during inference */}
-          <AnimatePresence>
-            {isLoading && (
-              <motion.div
-                key="scan-overlay"
-                className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Dim tint */}
-                <div className="absolute inset-0 bg-black/20 rounded-xl" />
-
-                {/* Scan line */}
-                <motion.div
-                  className="absolute left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_12px_4px_rgba(34,211,238,0.6)]"
-                  initial={{ top: "0%" }}
-                  animate={{ top: ["0%", "100%", "0%"] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
-                />
-
-                {/* Corner brackets */}
-                <div className="absolute top-2 left-2 w-5 h-5 border-t-2 border-l-2 border-cyan-400 rounded-tl" />
-                <div className="absolute top-2 right-2 w-5 h-5 border-t-2 border-r-2 border-cyan-400 rounded-tr" />
-                <div className="absolute bottom-2 left-2 w-5 h-5 border-b-2 border-l-2 border-cyan-400 rounded-bl" />
-                <div className="absolute bottom-2 right-2 w-5 h-5 border-b-2 border-r-2 border-cyan-400 rounded-br" />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <ScanningAnimation isVisible={isLoading} />
 
           {/* GradCAM fade-in over original */}
           <AnimatePresence>

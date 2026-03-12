@@ -1,5 +1,6 @@
 import { heroData } from "@/data/heroData";
 import { useLazyImage } from "@/hooks/useLazyImage";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { backgroundImage, isLoaded } = useLazyImage({
@@ -40,6 +41,22 @@ const Hero = () => {
           alt={heroData.collaborationLogo.alt}
           className="w-40 mb-3"
         />
+
+        <Link
+          to="/demo"
+          className="slice-button-inverted font-sans mt-4"
+          onClick={(e) => {
+            e.preventDefault();
+            const demoSection = document.getElementById('demo');
+            if (demoSection) {
+              demoSection.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.location.href = '/demo';
+            }
+          }}
+        >
+          <span className="text">Try Live Demo</span>
+        </Link>
 
         <p className="font-body font-light text-white/80 text-sm">
           {/* {heroData.sanskritMotto} */}

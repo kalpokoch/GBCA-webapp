@@ -183,6 +183,64 @@ All colors MUST be HSL.
     }
   }
 
+  /* Inverted slice button for dark backgrounds */
+  .slice-button-inverted {
+    padding: 0.375rem 1.25rem;
+    font-size: 0.875rem;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .slice-button-inverted .text {
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);
+    position: relative;
+    z-index: 1;
+    transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+    display: block;
+    width: 100%;
+  }
+
+  .slice-button-inverted::after {
+    content: "";
+    width: 0;
+    height: 350%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(30deg);
+    background-color: rgba(255, 255, 255, 0.95);
+    transition: 1000ms cubic-bezier(0.83, 0, 0.17, 1);
+  }
+
+  .slice-button-inverted:hover .text {
+    color: #1a1a2e;
+  }
+
+  .slice-button-inverted:hover::after {
+    width: 150%;
+  }
+
+  @media (max-width: 640px) {
+    .slice-button-inverted::after {
+      height: 500%;
+    }
+
+    .slice-button-inverted:hover::after {
+      width: 200%;
+    }
+  }
+
   /* Lazy image loading with blur-up effect */
   .blur-sm {
     filter: blur(4px);

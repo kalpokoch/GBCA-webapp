@@ -1,4 +1,19 @@
-const API_BASE = import.meta.env.VITE_API_URL as string;
+const API_BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, "") ?? "";
+
+async function fetchWithTimeout(
+  input: RequestInfo | URL,
+  init: RequestInit = {},
+  timeoutMs = 5000
+): Promise<Response> {
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
 
 export interface PredictResponse {
   probability: number;
@@ -22,6 +37,10 @@ export async function predictImage(
   file: File,
   gradcam = false
 ): Promise<InferenceResult> {
+  if (!API_BASE) {
+    throw new Error("API URL is not configured. Set VITE_API_URL.");
+  }
+
   const formData = new FormData();
   formData.append("file", file);
 
@@ -55,8 +74,10 @@ export async function predictImage(
 }
 
 export async function healthCheck(): Promise<boolean> {
+  if (!API_BASE) return false;
+
   try {
-    const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(5000) });
+    const res = await fetchWithTimeout(`${API_BASE}/health`, {}, 5000);
     return res.ok;
   } catch {
     return false;

@@ -3,11 +3,11 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  node_version = "20"
 
 [build.environment]
-  # Add your production API URL here
-  VITE_API_URL = "https://kalpokoch-gbca.hf.space"
+  NODE_VERSION = "20"
+  # Keep this aligned with the backend that exposes /health and /predict
+  VITE_API_URL = "https://AmityCentreforAI-gbca.hf.space"
 
 # Redirect all non-matching routes to index.html for SPA routing
 [[redirects]]

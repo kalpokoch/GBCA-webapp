@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
 import Navbar from "@/components/Navbar";
+import { MedicalDisclaimer } from "@/components/MedicalDisclaimer";
 import { DemoHeader }                    from "../components/demo/DemoHeader";
 import { GradCamOverlay }               from "../components/demo/GradCam";
 import { UploadZone }                    from "../components/demo/UploadZone";
@@ -161,6 +162,9 @@ export const Demo: React.FC = () => {
               </div>
 
             </div>
+
+            {/* Medical disclaimer */}
+            <MedicalDisclaimer />
           </div>
         </div>
 

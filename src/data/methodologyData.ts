@@ -151,6 +151,13 @@ export const methodologyData: MethodologyData = {
       description:
         "Proposed model outputs binary classification with confidence score and Grad-CAM overlay.",
     },
+    {
+      step: 5,
+      icon: "list-checks",
+      label: "Stage 2: Finding Analysis",
+      description:
+        "A second model estimates 7 radiological findings (e.g. wall thickening, liver invasion) to support review.",
+    },
   ],
   architecture: {
     name: "Dual-Pathway Multi-Scale Attention Network",

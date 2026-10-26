@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MdCloudUpload, MdTune, MdMemory, MdShowChart, MdArrowForward, MdArrowDownward } from "react-icons/md";
+import { MdCloudUpload, MdTune, MdMemory, MdShowChart, MdChecklist, MdArrowForward, MdArrowDownward } from "react-icons/md";
 import { methodologyData } from "@/data/methodologyData";
 import type { WorkflowStep } from "@/data/methodologyData";
 
@@ -8,6 +8,7 @@ const iconMap: Record<string, React.ElementType> = {
   sliders: MdTune,
   cpu: MdMemory,
   activity: MdShowChart,
+  "list-checks": MdChecklist,
 };
 
 const StepCard = ({ step, index }: { step: WorkflowStep; index: number }) => {

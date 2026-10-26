@@ -9,6 +9,7 @@ export function useInference() {
   const [error, setError]           = useState<string | null>(null);
   const [apiOnline, setApiOnline]   = useState<boolean | null>(null);
   const gradcamUrlRef               = useRef<string | null>(null);
+  const inFlightRef                 = useRef(false);
 
   // Check API health on mount
   useEffect(() => {
@@ -23,6 +24,10 @@ export function useInference() {
   }, []);
 
   const runInference = useCallback(async (file: File, gradcam: boolean) => {
+    // Prevent duplicate submissions — each Cancer request runs both stages (~10–20 s).
+    if (inFlightRef.current) return;
+    inFlightRef.current = true;
+
     // Revoke previous GradCAM URL if exists
     if (gradcamUrlRef.current) {
       URL.revokeObjectURL(gradcamUrlRef.current);
@@ -41,6 +46,8 @@ export function useInference() {
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Inference failed");
       setStatus("error");
+    } finally {
+      inFlightRef.current = false;
     }
   }, []);
 

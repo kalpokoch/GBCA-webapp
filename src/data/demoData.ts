@@ -14,9 +14,20 @@ export interface GradCamToggleData {
   description: string;
 }
 
+/** Progressive loading copy — the result (and whether stage 2 runs) is unknown until the response arrives, so keep it neutral. */
 export interface LoadingMessages {
-  default: string;
-  withGradCam: string;
+  initial: string;   // 0–4 s
+  detailed: string;  // after ~4 s
+  waking: string;    // after ~30 s
+}
+
+export interface FindingsData {
+  title: string;
+  detected: string;
+  notDetected: string;
+  noneDetected: string;
+  unavailable: string;
+  disclaimer: string;
 }
 
 export interface DemoData {
@@ -27,6 +38,7 @@ export interface DemoData {
   loading: LoadingMessages;
   sampleImages: SampleImage[];
   galleryLabel: string;
+  findings: FindingsData;
 }
 
 export const demoData: DemoData = {
@@ -42,10 +54,19 @@ export const demoData: DemoData = {
     description: "Visualizes model attention · ~15s on CPU",
   },
   loading: {
-    default: "Running inference…",
-    withGradCam: "Running inference + GradCAM…",
+    initial: "Analysing scan…",
+    detailed: "Running detailed analysis… this can take up to 20 seconds.",
+    waking: "The server may be waking up, please wait…",
   },
   galleryLabel: "Try a Sample CT Scan",
+  findings: {
+    title: "Radiological findings (AI-suggested)",
+    detected: "Detected",
+    notDetected: "Not detected",
+    noneDetected: "No specific findings identified by the attribute model.",
+    unavailable: "Detailed findings are unavailable for this scan.",
+    disclaimer: "AI-generated findings for research and decision support only. Not a diagnosis.",
+  },
   // Add your sample images to public/test_images/ and list them here
   sampleImages: [
     { image: "/test_images/sample1.png", text: "Sample 1" },

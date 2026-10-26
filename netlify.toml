@@ -7,7 +7,7 @@
 [build.environment]
   NODE_VERSION = "20"
   # Keep this aligned with the backend that exposes /health and /predict
-  VITE_API_URL = "https://AmityCentreforAI-gbca.hf.space"
+  VITE_API_URL = "https://amitycentreforai-gbca.hf.space"
 
 # Redirect all non-matching routes to index.html for SPA routing
 [[redirects]]

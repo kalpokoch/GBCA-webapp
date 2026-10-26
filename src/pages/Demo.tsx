@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import { MedicalDisclaimer } from "@/components/MedicalDisclaimer";
+import { FindingsCard }                  from "../components/demo/FindingsCard";
 import { DemoHeader }                    from "../components/demo/DemoHeader";
 import { GradCamOverlay }               from "../components/demo/GradCam";
 import { UploadZone }                    from "../components/demo/UploadZone";
@@ -31,6 +32,10 @@ export const Demo: React.FC = () => {
   const [fullscreenOpen, setFullscreenOpen] = useState(false);
 
   const { status, result, error, apiOnline, runInference, reset } = useInference();
+  const isCancer =
+    result?.type === "gradcam" ? result.data.label === "Cancer"
+    : result?.type === "json" ? result.data.predicted_class === 1
+    : false;
 
   // ── Open crop modal with a fresh File ─────────────────────────────────────
   const openCrop = useCallback((file: File) => {
@@ -72,6 +77,7 @@ export const Demo: React.FC = () => {
 
   // Sample gallery selection — fetch image → File → open crop modal
   const handleSampleSelect = useCallback(async (imageUrl: string) => {
+    if (status === "loading") return; // one /predict request at a time
     try {
       const res  = await fetch(imageUrl);
       const blob = await res.blob();
@@ -81,7 +87,7 @@ export const Demo: React.FC = () => {
     } catch {
       console.error("Failed to load sample image:", imageUrl);
     }
-  }, [openCrop]);
+  }, [openCrop, status]);
 
   // New Analysis — clear all state and start fresh
   const handleNewAnalysis = useCallback(() => {
@@ -135,7 +141,7 @@ export const Demo: React.FC = () => {
                     <p className="font-body text-sm font-medium">Results will appear here</p>
                   </div>
                 )}
-                {status === "loading" && <LoadingState gradcam={true} />}
+                {status === "loading" && <LoadingState />}
                 {status === "error" && error && (
                   <Alert variant="destructive">
                     <AlertDescription>❌ {error}</AlertDescription>
@@ -145,7 +151,10 @@ export const Demo: React.FC = () => {
                   <>
                     {result.type === "json"    && <ResultCard     data={result.data} />}
                     {result.type === "gradcam" && <GradCamOverlay data={result.data} />}
-                    
+
+                    {/* Stage 2 findings — Cancer only; Normal renders exactly as before */}
+                    {isCancer && <FindingsCard attributes={result.data.attributes} />}
+
                     {/* New Analysis Button */}
                     <div className="pt-2">
                       <Button
@@ -159,6 +168,7 @@ export const Demo: React.FC = () => {
                     </div>
                   </>
                 )}
+
               </div>
 
             </div>
